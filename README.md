@@ -25,6 +25,14 @@ All models use the same **80/20 stratified train-validation split** (`random_sta
 
 The largest gain came from moving beyond the linear baseline. CatBoost produced the highest observed score, although its improvement over Histogram Gradient Boosting was modest. Public leaderboard scores are not final private leaderboard results.
 
+## Key findings
+
+- **Travel class and travel purpose are strongly associated with observed satisfaction.** In the training data, satisfaction was approximately **72.5% in Business class** versus **16.8% in Economy**, and **58.4% for business travel** versus **9.7% for personal travel**. These are descriptive associations, not causal effects.
+- Switching from Logistic Regression to nonlinear boosting delivered the largest gain in ROC-AUC. CatBoost achieved the best observed public score, but the difference from Histogram Gradient Boosting is small.
+- The modeling notebook includes **CatBoost feature importance** and **validation ROC-AUC by travel class and travel type**. These analyses run locally alongside model training; their outputs should be interpreted after executing the notebook.
+
+![Validation and public leaderboard model comparison](assets/model_comparison.png)
+
 ## Repository structure
 
 ```text
@@ -35,6 +43,8 @@ The largest gain came from moving beyond the linear baseline. CatBoost produced 
 │   ├── 01_eda.ipynb
 │   └── 02_modeling.ipynb
 ├── submissions/             # Generated CSV files (not tracked)
+├── assets/
+│   └── model_comparison.png
 ├── .gitignore
 ├── requirements.txt
 └── README.md
@@ -54,8 +64,16 @@ The largest gain came from moving beyond the linear baseline. CatBoost produced 
 
 ## Limitations
 
-This was a first-pass modeling exercise rather than an exhaustive optimization study. Results use a single validation split; CatBoost also uses that split for early stopping. The small difference between the two boosting models should therefore not be interpreted as definitive evidence that one consistently outperforms the other.
+This was a first-pass modeling exercise rather than an exhaustive optimization study. Results use a single validation split; CatBoost also uses that split for early stopping. The small difference between the two boosting models should therefore not be interpreted as definitive evidence that one consistently outperforms the other. Feature importance is model-specific, and subgroup comparisons are descriptive; neither identifies causal effects.
 
 ## Tools
 
-Python, pandas, NumPy, scikit-learn, CatBoost, Jupyter.
+Python, pandas, NumPy, scikit-learn, CatBoost, matplotlib, Jupyter.
+
+## Author
+
+**Ignacio Spreafico**
+
+- LinkedIn: [linkedin.com/in/ignacio-spreafico](https://www.linkedin.com/in/ignacio-spreafico)
+- Portfolio: [ignaciospreafico.vercel.app](https://ignaciospreafico.vercel.app)
+- Email: [nachospreafico06@gmail.com](mailto:nachospreafico06@gmail.com)
